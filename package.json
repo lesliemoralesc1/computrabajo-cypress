@@ -1,0 +1,21 @@
+{
+  "name": "computrabajo-cypress",
+  "version": "1.0.0",
+  "description": "Automatización de pruebas para Computrabajo con Cypress",
+  "main": "index.js",
+    "scripts": {
+    "test": "cypress run",
+    "test:headed": "cypress run --headed",
+    "test:chrome": "cypress run --browser chrome",
+    "test:headed:chrome": "cypress run --headed --browser chrome",
+    "test:debug": "cypress run --inspect",
+    "open": "cypress open"
+  },
+  "keywords": [],
+  "author": "Leslie Liseth Morales Casseres",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "cypress": "^15.7.1"
+  }
+}
