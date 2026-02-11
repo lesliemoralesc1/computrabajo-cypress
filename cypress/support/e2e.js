@@ -15,6 +15,35 @@
 
 // Import commands.js using ES2015 syntax:
 import './commands'
+import '@shelex/cypress-allure-plugin';
+
+let lastScreenshotDetails = null;
+
+Cypress.Screenshot.defaults({
+  onAfterScreenshot(_, details) {
+    lastScreenshotDetails = details;
+  },
+});
+
+const attachLastScreenshotToAllure = (name) => {
+  if (!lastScreenshotDetails || !lastScreenshotDetails.path) {
+    return;
+  }
+
+  cy.readFile(lastScreenshotDetails.path, 'base64').then((base64) => {
+    cy.allure().attachment(name, base64, 'image/png');
+  });
+};
+
+afterEach(function () {
+  if (this.currentTest && this.currentTest.state === 'passed') {
+    const safeTitle = this.currentTest.title.replace(/[^a-zA-Z0-9-_]+/g, '_');
+    cy.screenshot(`passed/${safeTitle}`, { capture: 'viewport' });
+    cy.then(() => {
+      attachLastScreenshotToAllure(`Screenshot - ${this.currentTest.title}`);
+    });
+  }
+});
 Cypress.on('uncaught:exception', (err, runnable) => {
   // Ignorar específicamente el error 'ga is not defined'
   if (err.message.includes('ga is not defined')) {

@@ -1,11 +1,14 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-   e2e: {
-  
+  env: {
+    allure: true,
+    allureResultsPath: 'allure-results',
+  },
+  e2e: {
     setupNodeEvents(on, config) {
-      // implement node event listeners here
-      
+      require('@shelex/cypress-allure-plugin/writer')(on, config);
+      return config;
     },
     browswer: 'chrome',
     specPattern: 'cypress/e2e/**/*.cy.js',
@@ -20,5 +23,6 @@ module.exports = defineConfig({
     requestTimeout: 10000,
     responseTimeout: 10000,
     defaultCommandTimeout: 10000,
+    experimentalOriginDependencies: true,
   },
 });

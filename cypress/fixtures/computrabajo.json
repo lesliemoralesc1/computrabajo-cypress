@@ -1,0 +1,17 @@
+{
+  "baseUrl": "https://www.computrabajo.com/",
+  "coUrl": "https://co.computrabajo.com",
+  "secureUrl": "https://secure.computrabajo.com",
+  "offerTitle": "Test automation Engineer QA",
+  "location": "Guainía",
+  "roleSearch": "qa",
+  "salaryFilter": "Menos de $ 700.000",
+  "experienceFilter": "1 año",
+  "userData": {
+    "email": "leslietester@tester.com",
+    "name": "Leslie",
+    "surname": "Morales",
+    "password": "Test1234!",
+    "role": "QA"
+  }
+}
